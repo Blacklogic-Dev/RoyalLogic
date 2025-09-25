@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoyalLogic Estate - Properties</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  body {
+    background: linear-gradient(to right, #000000, #0000ff);
+    color: white;
+    padding-bottom: 80px; /* space for bottom nav */
+  }
+  .card:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease-in-out;
+  }
+  .filter-btn {
+    background: #00f0ff;
+    color: #000;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  .filter-btn.active {
+    background: #fff;
+    color: #0000ff;
+  }
+  /* Modal */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background: rgba(0,0,0,0.85);
+  }
+  .modal-content {
+    background: #000033;
+    margin: 8% auto;
+    padding: 20px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 500px;
+  }
+  .close {
+    float: right;
+    font-size: 24px;
+    font-weight: bold;
+    cursor: pointer;
+  }
+  input, select {
+    width: 100%;
+    margin: 8px 0;
+    padding: 8px;
+    border-radius: 6px;
+    border: none;
+    background: #000033;
+    color: white;
+  }
+  button.submit-btn {
+    background: #00f0ff;
+    color: #000;
+    padding: 10px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 10px;
+    cursor: pointer;
+  }
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000000cc;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .bottom-nav a {
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .bottom-nav a span {
+    display: block;
+    font-size: 0.75rem;
+  }
+</style>
+</head>
+<body class="p-6">
+
+<h1 class="text-3xl font-bold text-center mb-6">Our Properties</h1>
+
+<!-- Filter Buttons -->
+<div class="flex justify-center gap-4 mb-6 flex-wrap">
+  <button class="filter-btn active" onclick="filterProps('all')">All</button>
+  <button class="filter-btn" onclick="filterProps('hotels')">Hotels</button>
+  <button class="filter-btn" onclick="filterProps('house')">House Properties</button>
+  <button class="filter-btn" onclick="filterProps('smart')">Smart Homes</button>
+</div>
+
+<!-- Property Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="properties-grid">
+
+  <!-- HOTELS -->
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card hotels">
+    <img src="Durban.jpg" alt="Durban Bay Hotel" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Durban Bay Hotel</h3>
+    <p><i class="fas fa-location-dot"></i> Durban, SA</p>
+    <p><i class="fas fa-coins"></i> $1,200,000</p>
+    <button class="submit-btn" onclick="openForm('Durban Bay Hotel')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card hotels">
+    <img src="Hilton.jpg" alt="Oceanview Durban" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Oceanview Durban</h3>
+    <p><i class="fas fa-location-dot"></i> Durban, SA</p>
+    <p><i class="fas fa-coins"></i> $1,350,000</p>
+    <button class="submit-btn" onclick="openForm('Oceanview Durban')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card hotels">
+    <img src="Save.jpg" alt="Sandton Grand" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Sandton Grand</h3>
+    <p><i class="fas fa-location-dot"></i> Johannesburg, SA</p>
+    <p><i class="fas fa-coins"></i> $1,500,000</p>
+    <button class="submit-btn" onclick="openForm('Sandton Grand')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card hotels">
+    <img src="Square.jpg" alt="City Lights Hotel" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">City Lights Hotel</h3>
+    <p><i class="fas fa-location-dot"></i> Johannesburg, SA</p>
+    <p><i class="fas fa-coins"></i> $1,450,000</p>
+    <button class="submit-btn" onclick="openForm('City Lights Hotel')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card hotels">
+    <img src="Luxury.jpg" alt="Cape Luxury Hotel" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Cape Luxury Hotel</h3>
+    <p><i class="fas fa-location-dot"></i> Cape Town, SA</p>
+    <p><i class="fas fa-coins"></i> $1,600,000</p>
+    <button class="submit-btn" onclick="openForm('Cape Luxury Hotel')">Buy</button>
+  </div>
+
+  <!-- HOUSES -->
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card house">
+    <img src="Sandton.jpg" alt="Sandton Mansion 1" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Sandton Mansion 1</h3>
+    <p><i class="fas fa-location-dot"></i> Sandton, SA</p>
+    <p><i class="fas fa-coins"></i> $2,800,000</p>
+    <button class="submit-btn" onclick="openForm('Sandton Mansion 1')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card house">
+    <img src="Jozi.jpeg" alt="Sandton Mansion 2" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Sandton Mansion 2</h3>
+    <p><i class="fas fa-location-dot"></i> Sandton, SA</p>
+    <p><i class="fas fa-coins"></i> $3,000,000</p>
+    <button class="submit-btn" onclick="openForm('Sandton Mansion 2')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card house">
+    <img src="Umhlanga.jpg" alt="Umhlanga Villa 1" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Umhlanga Villa 1</h3>
+    <p><i class="fas fa-location-dot"></i> Umhlanga Rocks, SA</p>
+    <p><i class="fas fa-coins"></i> $2,200,000</p>
+    <button class="submit-btn" onclick="openForm('Umhlanga Villa 1')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card house">
+    <img src="Rocks.jpeg" alt="Umhlanga Villa 2" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Umhlanga Villa 2</h3>
+    <p><i class="fas fa-location-dot"></i> Umhlanga Rocks, SA</p>
+    <p><i class="fas fa-coins"></i> $2,400,000</p>
+    <button class="submit-btn" onclick="openForm('Umhlanga Villa 2')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card house">
+    <img src="Cape.jpg" alt="Cape Town Mansion" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Cape Town Mansion</h3>
+    <p><i class="fas fa-location-dot"></i> Cape Town, SA</p>
+    <p><i class="fas fa-coins"></i> $2,900,000</p>
+    <button class="submit-btn" onclick="openForm('Cape Town Mansion')">Buy</button>
+  </div>
+
+  <!-- SMART HOMES -->
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card smart">
+    <img src="Dubai.jpg" alt="Dubai Sentagon" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Dubai Sentagon</h3>
+    <p>Elite smart home with voice-controlled architecture, AI assistant, and dual drones monitoring every 2 hours. Built with aluminum windows inspired by Burj Khalifa.</p>
+    <div class="flex justify-between mt-4 text-blue-300">
+      <span><i class="fas fa-location-dot"></i> Dubai, UAE</span>
+      <span><i class="fas fa-coins"></i> $2,500,000</span>
+    </div>
+    <button class="submit-btn" onclick="openForm('Dubai Sentagon')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card smart">
+    <img src="paradise.jpg" alt="Paradise" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Paradise</h3>
+    <p>Smart home with facial recognition doors and AI guidance. Set in South Africa’s natural beauty, it reacts to footsteps and lives with you like a digital companion.</p>
+    <div class="flex justify-between mt-4 text-blue-300">
+      <span><i class="fas fa-location-dot"></i> Cape Town, SA</span>
+      <span><i class="fas fa-coins"></i> $1,800,000</span>
+    </div>
+    <button class="submit-btn" onclick="openForm('Paradise')">Buy</button>
+  </div>
+
+  <div class="card bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg prop-card smart">
+    <img src="montana.jpg" alt="Montana" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Montana</h3>
+    <p>AI-controlled home with voice password entry, personalized digital wall art, and climate control. Feels like living inside your own intelligent world.</p>
+    <div class="flex justify-between mt-4 text-blue-300">
+      <span><i class="fas fa-location-dot"></i> Johannesburg, SA</span>
+      <span><i class="fas fa-coins"></i> $2,000,000</span>
+    </div>
+    <button class="submit-btn" onclick="openForm('Montana')">Buy</button>
+  </div>
+
+</div>
+
+<!-- Modal Form -->
+<div id="buyModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeForm()">&times;</span>
+    <h2 class="text-2xl font-bold mb-4" id="modalPropName">Buy Property</h2>
+    <form id="buyForm">
+      <input type="text" placeholder="Full Name" required>
+      <input type="text" placeholder="Surname" required>
+      <select required>
+        <option value="">Occupation</option>
+        <option>Employed</option>
+        <option>Student</option>
+        <option>Business Owner</option>
+        <option>Other</option>
+      </select>
+      <input type="number" placeholder="Age" required>
+      <input type="text" placeholder="ID Number" required>
+      <select required>
+        <option value="">Net Worth</option>
+        <option>$50,000 - $200,000</option>
+        <option>$200,001 - $500,000</option>
+        <option>$500,001 - $1,000,000</option>
+        <option>$1,000,001+</option>
+      </select>
+      <button type="submit" class="submit-btn">Submit</button>
+    </form>
+    <p id="confirmationMsg" class="mt-4 text-center text-green-400 hidden">
+      Loading the property to your card. You will be contacted once your application has been approved to verify documents.
+    </p>
+  </div>
+</div>
+
+<!-- Bottom Navigation Bar -->
+<div class="bottom-nav">
+  <a href="advisor.html"><i class="fas fa-building"></i><span>Prop</span></a>
+  <a href="About.html"><i class="fas fa-search"></i><span>Search</span></a>
+  <a href="FAQs.html"><i class="fas fa-clipboard-list"></i><span>Register</span></a>
+  <a href="contact.html"><i class="fas fa-user"></i><span>Profile</span></a>
+</div>
+
+<script>
+  // Filter properties
+  function filterProps(category) {
+    const allCards = document.querySelectorAll('.prop-card');
+    allCards.forEach(card => {
+      if(category === 'all') {
+        card.style.display = 'block';
+      } else if(card.classList.contains(category)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+
+    document.querySelectorAll('.filter-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelector(`button[onclick="filterProps('${category}')"]`).classList.add('active');
+  }
+
+  // Modal open/close
+  function openForm(propName) {
+    document.getElementById('modalPropName').innerText = `Buy ${propName}`;
+    document.getElementById('confirmationMsg').classList.add('hidden');
+    document.getElementById('buyForm').style.display = 'block';
+    document.getElementById('buyModal').style.display = 'block';
+  }
+  function closeForm() {
+    document.getElementById('buyModal').style.display = 'none';
+  }
+  window.onclick = function(event) {
+    const modal = document.getElementById('buyModal');
+    if (event.target == modal) modal.style.display = 'none';
+  }
+
+  // Handle form submission
+  document.getElementById('buyForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    // hide form, show confirmation
+    this.style.display = 'none';
+    document.getElementById('confirmationMsg').classList.remove('hidden');
+  });
+</script>
+
+</body>
+</html>

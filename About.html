@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoyalLogic Estate - Search Properties</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  body {
+    background: linear-gradient(to right, #000000, #0000ff);
+    color: white;
+    padding-bottom: 80px; /* space for bottom nav */
+  }
+  .card:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease-in-out;
+  }
+  input.search-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    border: none;
+    background: #000033;
+    color: white;
+  }
+  .bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #000000cc;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 0;
+  }
+  .bottom-nav a {
+    color: white;
+    font-size: 1.5rem;
+    text-align: center;
+  }
+  .bottom-nav a span {
+    display: block;
+    font-size: 0.75rem;
+  }
+  .card {
+    background: #000033;
+    padding: 10px;
+    border-radius: 12px;
+  }
+</style>
+</head>
+<body class="p-6">
+
+<h1 class="text-3xl font-bold text-center mb-6">Search Properties</h1>
+
+<!-- Search Input -->
+<input type="text" id="searchInput" class="search-input" placeholder="Search by property name or location..." onkeyup="searchProperties()">
+
+<!-- Property Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6" id="properties-grid">
+
+  <!-- HOTELS -->
+  <div class="card prop-card hotels" data-name="Durban Bay Hotel" data-location="Durban, SA">
+    <img src="Durban.jpg" alt="Durban Bay Hotel" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Durban Bay Hotel</h3>
+    <p><i class="fas fa-location-dot"></i> Durban, SA</p>
+    <p><i class="fas fa-coins"></i> $1,200,000</p>
+  </div>
+
+  <div class="card prop-card hotels" data-name="Oceanview Durban" data-location="Durban, SA">
+    <img src="Hilton.jpg" alt="Oceanview Durban" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Oceanview Durban</h3>
+    <p><i class="fas fa-location-dot"></i> Durban, SA</p>
+    <p><i class="fas fa-coins"></i> $1,350,000</p>
+  </div>
+
+  <div class="card prop-card hotels" data-name="Sandton Grand" data-location="Johannesburg, SA">
+    <img src="Save.jpg" alt="Sandton Grand" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Sandton Grand</h3>
+    <p><i class="fas fa-location-dot"></i> Johannesburg, SA</p>
+    <p><i class="fas fa-coins"></i> $1,500,000</p>
+  </div>
+
+  <div class="card prop-card hotels" data-name="City Lights Hotel" data-location="Johannesburg, SA">
+    <img src="Square.jpg" alt="City Lights Hotel" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">City Lights Hotel</h3>
+    <p><i class="fas fa-location-dot"></i> Johannesburg, SA</p>
+    <p><i class="fas fa-coins"></i> $1,450,000</p>
+  </div>
+
+  <div class="card prop-card hotels" data-name="Cape Luxury Hotel" data-location="Cape Town, SA">
+    <img src="Luxury.jpg" alt="Cape Luxury Hotel" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Cape Luxury Hotel</h3>
+    <p><i class="fas fa-location-dot"></i> Cape Town, SA</p>
+    <p><i class="fas fa-coins"></i> $1,600,000</p>
+  </div>
+
+  <!-- HOUSES -->
+  <div class="card prop-card house" data-name="Sandton Mansion 1" data-location="Sandton, SA">
+    <img src="Sandton.jpg" alt="Sandton Mansion 1" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Sandton Mansion 1</h3>
+    <p><i class="fas fa-location-dot"></i> Sandton, SA</p>
+    <p><i class="fas fa-coins"></i> $2,800,000</p>
+  </div>
+
+  <div class="card prop-card house" data-name="Sandton Mansion 2" data-location="Sandton, SA">
+    <img src="Jozi.jpeg" alt="Sandton Mansion 2" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Sandton Mansion 2</h3>
+    <p><i class="fas fa-location-dot"></i> Sandton, SA</p>
+    <p><i class="fas fa-coins"></i> $3,000,000</p>
+  </div>
+
+  <div class="card prop-card house" data-name="Umhlanga Villa 1" data-location="Umhlanga Rocks, SA">
+    <img src="Umhlanga.jpg" alt="Umhlanga Villa 1" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Umhlanga Villa 1</h3>
+    <p><i class="fas fa-location-dot"></i> Umhlanga Rocks, SA</p>
+    <p><i class="fas fa-coins"></i> $2,200,000</p>
+  </div>
+
+  <div class="card prop-card house" data-name="Umhlanga Villa 2" data-location="Umhlanga Rocks, SA">
+    <img src="Rocks.jpeg" alt="Umhlanga Villa 2" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Umhlanga Villa 2</h3>
+    <p><i class="fas fa-location-dot"></i> Umhlanga Rocks, SA</p>
+    <p><i class="fas fa-coins"></i> $2,400,000</p>
+  </div>
+
+  <div class="card prop-card house" data-name="Cape Town Mansion" data-location="Cape Town, SA">
+    <img src="Cape.jpg" alt="Cape Town Mansion" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Cape Town Mansion</h3>
+    <p><i class="fas fa-location-dot"></i> Cape Town, SA</p>
+    <p><i class="fas fa-coins"></i> $2,900,000</p>
+  </div>
+
+  <!-- SMART HOMES -->
+  <div class="card prop-card smart" data-name="Dubai Sentagon" data-location="Dubai, UAE">
+    <img src="Dubai.jpg" alt="Dubai Sentagon" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Dubai Sentagon</h3>
+    <p>Elite smart home with voice-controlled architecture, AI assistant, and dual drones monitoring every 2 hours. Built with aluminum windows inspired by Burj Khalifa.</p>
+    <p><i class="fas fa-location-dot"></i> Dubai, UAE</p>
+    <p><i class="fas fa-coins"></i> $2,500,000</p>
+  </div>
+
+  <div class="card prop-card smart" data-name="Paradise" data-location="Cape Town, SA">
+    <img src="paradise.jpg" alt="Paradise" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Paradise</h3>
+    <p>Smart home with facial recognition doors and AI guidance. Set in South Africa’s natural beauty, it reacts to footsteps and lives with you like a digital companion.</p>
+    <p><i class="fas fa-location-dot"></i> Cape Town, SA</p>
+    <p><i class="fas fa-coins"></i> $1,800,000</p>
+  </div>
+
+  <div class="card prop-card smart" data-name="Montana" data-location="Johannesburg, SA">
+    <img src="montana.jpg" alt="Montana" class="rounded-lg mb-2">
+    <h3 class="text-xl font-bold">Montana</h3>
+    <p>AI-controlled home with voice password entry, personalized digital wall art, and climate control. Feels like living inside your own intelligent world.</p>
+    <p><i class="fas fa-location-dot"></i> Johannesburg, SA</p>
+    <p><i class="fas fa-coins"></i> $2,000,000</p>
+  </div>
+
+</div>
+
+<!-- Bottom Navigation Bar -->
+<div class="bottom-nav">
+  <a href="advisor.html"><i class="fas fa-building"></i><span>Prop</span></a>
+  <a href="About.html"><i class="fas fa-search"></i><span>Search</span></a>
+  <a href="FAQs.html"><i class="fas fa-clipboard-list"></i><span>Register</span></a>
+  <a href="contact.html"><i class="fas fa-user"></i><span>Profile</span></a>
+</div>
+
+<script>
+function searchProperties() {
+  const input = document.getElementById('searchInput').value.toLowerCase();
+  const cards = document.querySelectorAll('.prop-card');
+
+  cards.forEach(card => {
+    const name = card.dataset.name.toLowerCase();
+    const location = card.dataset.location.toLowerCase();
+    if(name.includes(input) || location.includes(input)) {
+      card.style.display = 'block';
+    } else {
+      card.style.display = 'none';
+    }
+  });
+}
+</script>
+
+</body>
+</html>

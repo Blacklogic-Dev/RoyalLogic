@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoyalLogic Estate - Profile & Calculator</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  body {
+    background: linear-gradient(to right, #000000, #0000ff);
+    color: white;
+    min-height: 100vh;
+    font-family: sans-serif;
+  }
+  .property-card, .calculator-card {
+    background: #000033;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+  }
+</style>
+</head>
+<body class="p-4">
+
+<!-- Profile Header -->
+<div class="text-center mb-6">
+  <i class="fas fa-user-circle text-6xl mb-2"></i>
+  <h2 class="text-2xl font-bold">John Doe</h2>
+  <p class="text-blue-300">john.doe@email.com</p>
+</div>
+
+<!-- Properties Bought Section -->
+<div class="mb-6">
+  <h3 class="text-xl font-bold mb-3">Properties You Bought</h3>
+  <div id="propertiesList">
+    <div class="property-card">
+      <h4 class="font-bold">Sandton Mansion 1</h4>
+      <p><i class="fas fa-location-dot"></i> Sandton, SA</p>
+      <p><i class="fas fa-coins"></i> $2,800,000</p>
+    </div>
+    <div class="property-card">
+      <h4 class="font-bold">Dubai Sentagon</h4>
+      <p><i class="fas fa-location-dot"></i> Dubai, UAE</p>
+      <p><i class="fas fa-coins"></i> $2,500,000</p>
+    </div>
+  </div>
+</div>
+
+<!-- Settings Section -->
+<div class="mb-6">
+  <h3 class="text-xl font-bold mb-3">Settings</h3>
+  <div class="flex items-center justify-between bg-black p-4 rounded-lg mb-3">
+    <span class="font-bold"><i class="fas fa-moon"></i> Dark / Light Mode</span>
+    <label class="switch">
+      <input type="checkbox" id="themeToggle">
+      <span class="slider round"></span>
+    </label>
+  </div>
+
+  <div class="bg-black p-4 rounded-lg mb-3">
+    <h4 class="font-bold mb-2"><i class="fas fa-book"></i> App Guide</h4>
+    <ul class="list-disc ml-5 text-sm">
+      <li>Go to "Properties" to browse available estates.</li>
+      <li>Register and submit initials to secure property.</li>
+      <li>Track purchased properties in "Profile".</li>
+      <li>Use settings to toggle themes and access tips.</li>
+    </ul>
+  </div>
+</div>
+
+<!-- Calculator Section -->
+<div class="calculator-card mb-6">
+  <h3 class="text-xl font-bold mb-3">Property Loan & Profit Calculator</h3>
+  <div class="mb-3">
+    <label class="block mb-1">Type of Property</label>
+    <select id="propertyType" class="w-full p-2 rounded bg-black text-white">
+      <option value="">Select Type</option>
+      <option value="smart">Smart Home ($2,000,000)</option>
+      <option value="house">House ($2,500,000)</option>
+      <option value="hotel">Hotel ($3,000,000)</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="block mb-1">Budget Loan ($)</label>
+    <input type="number" id="loanAmount" class="w-full p-2 rounded bg-black text-white" placeholder="Enter budget">
+  </div>
+
+  <div class="mb-3">
+    <label class="block mb-1">Loan Duration (Years)</label>
+    <select id="loanDuration" class="w-full p-2 rounded bg-black text-white">
+      <option value="1">1 Year</option>
+      <option value="2">2 Years</option>
+      <option value="3">3 Years</option>
+      <option value="4">4 Years</option>
+      <option value="5">5 Years</option>
+    </select>
+  </div>
+
+  <div class="mb-3">
+    <label class="block mb-1">Number of People to Hire</label>
+    <input type="number" id="peopleCount" class="w-full p-2 rounded bg-black text-white" placeholder="Enter number of people">
+  </div>
+
+  <div class="mb-3">
+    <label class="block mb-1">Interest Rate (%)</label>
+    <input type="number" id="interestRate" class="w-full p-2 rounded bg-black text-white" readonly>
+  </div>
+
+  <button onclick="calculateProperty()" class="w-full bg-blue-400 p-3 rounded font-bold mt-2">Calculate</button>
+
+  <div id="calcResults" class="mt-4 text-white hidden">
+    <p><strong>Property Amount:</strong> $<span id="propAmount">0</span></p>
+    <p><strong>Profit:</strong> $<span id="profitAmount">0</span></p>
+    <p><strong>Payback with Interest:</strong> $<span id="paybackAmount">0</span></p>
+  </div>
+</div>
+
+<!-- Bottom Navigation -->
+<div class="fixed bottom-0 left-0 w-full bg-black/80 flex justify-around items-center p-3">
+  <a href="index.html" class="text-white text-center">
+    <i class="fas fa-building text-xl"></i>
+    <span class="text-xs block">Properties</span>
+  </a>
+  <a href="About.html" class="text-white text-center">
+    <i class="fas fa-search text-xl"></i>
+    <span class="text-xs block">Search</span>
+  </a>
+  <a href="FAQs.html" class="text-white text-center">
+    <i class="fas fa-clipboard-list text-xl"></i>
+    <span class="text-xs block">Register</span>
+  </a>
+  <a href="contact.html" class="text-white text-center">
+    <i class="fas fa-user text-xl"></i>
+    <span class="text-xs block">Profile</span>
+  </a>
+</div>
+
+<script>
+  const toggle = document.getElementById('themeToggle');
+  toggle.addEventListener('change', () => {
+    if(toggle.checked) {
+      document.body.style.background = 'linear-gradient(to right, #000, #e0e0ff)';
+      document.body.style.color = '#000';
+    } else {
+      document.body.style.background = 'linear-gradient(to right, #000000, #0000ff)';
+      document.body.style.color = '#fff';
+    }
+  });
+
+  function calculateProperty() {
+    const type = document.getElementById('propertyType').value;
+    const loan = parseFloat(document.getElementById('loanAmount').value) || 0;
+    const duration = parseInt(document.getElementById('loanDuration').value);
+    const people = parseInt(document.getElementById('peopleCount').value) || 1;
+
+    let price = 0;
+    let interest = 0;
+
+    if(type === 'smart') { price = 2000000; interest = 8; }
+    else if(type === 'house') { price = 2500000; interest = 7; }
+    else if(type === 'hotel') { price = 3000000; interest = 6; }
+
+    document.getElementById('interestRate').value = interest;
+
+    const totalAmount = price * people;
+    const profit = (totalAmount - loan);
+    const payback = totalAmount + (totalAmount * (interest/100) * duration);
+
+    document.getElementById('propAmount').innerText = totalAmount.toLocaleString();
+    document.getElementById('profitAmount').innerText = profit.toLocaleString();
+    document.getElementById('paybackAmount').innerText = payback.toLocaleString();
+
+    document.getElementById('calcResults').classList.remove('hidden');
+  }
+</script>
+
+</body>
+</html>

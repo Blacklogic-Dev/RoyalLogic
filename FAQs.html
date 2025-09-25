@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RoyalLogic Estate - Property Registration</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<style>
+  body {
+    background: linear-gradient(to right, #000000, #0000ff);
+    color: white;
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: sans-serif;
+  }
+
+  form {
+    background: white;
+    color: black;
+    border-radius: 12px;
+    padding: 20px;
+    width: 95%;
+    max-width: 600px;
+    max-height: 95vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+  }
+
+  input, select {
+    width: 100%;
+    margin: 8px 0;
+    padding: 12px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+  }
+
+  label {
+    font-weight: bold;
+    margin-top: 12px;
+    display: block;
+  }
+
+  button.submit-btn {
+    background: #0000ff;
+    color: white;
+    padding: 12px;
+    width: 100%;
+    font-weight: bold;
+    border-radius: 8px;
+    margin-top: 15px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+</style>
+</head>
+<body>
+
+<form id="registrationForm">
+  <h1 class="text-2xl font-bold text-center mb-4">RoyalLogic Estate Registration</h1>
+  
+  <label for="name">First Name</label>
+  <input type="text" id="name" placeholder="Enter your first name" required>
+
+  <label for="surname">Surname</label>
+  <input type="text" id="surname" placeholder="Enter your surname" required>
+
+  <label for="dob">Date of Birth</label>
+  <input type="date" id="dob" required>
+
+  <label for="idNumber">ID Number</label>
+  <input type="text" id="idNumber" placeholder="Enter your ID Number" required>
+
+  <label for="email">Email Address</label>
+  <input type="email" id="email" placeholder="Enter your email address" required>
+
+  <label for="propertyType">Property Type</label>
+  <select id="propertyType" required>
+    <option value="">Select Property Type</option>
+    <option value="Smart Home">Smart Home</option>
+    <option value="Hotel">Hotel</option>
+    <option value="House">House</option>
+  </select>
+
+  <label for="signature">Initials + Surname (as signature)</label>
+  <input type="text" id="signature" placeholder="Enter your initials and surname" required>
+
+  <button type="button" class="submit-btn" onclick="submitForm()">Submit Registration</button>
+</form>
+
+<script>
+  // Submit form function
+  function submitForm() {
+    const name = document.getElementById('name').value;
+    const surname = document.getElementById('surname').value;
+    const dob = document.getElementById('dob').value;
+    const idNumber = document.getElementById('idNumber').value;
+    const email = document.getElementById('email').value;
+    const propertyType = document.getElementById('propertyType').value;
+    const signature = document.getElementById('signature').value;
+
+    if (!name || !surname || !dob || !idNumber || !email || !propertyType || !signature) {
+      alert('Please fill all fields!');
+      return;
+    }
+
+    // Compose message to agent
+    const agentNumber = '0606614909';
+    const message = `
+New Property Registration:
+Name: ${name} ${surname}
+Date of Birth: ${dob}
+ID: ${idNumber}
+Email: ${email}
+Property Type: ${propertyType}
+Signature (Initials + Surname): ${signature}
+    `;
+
+    // Open WhatsApp with message
+    const whatsappURL = `https://wa.me/${agentNumber}?text=${encodeURIComponent(message)}`;
+    window.open(whatsappURL, '_blank');
+  }
+</script>
+
+</body>
+</html>

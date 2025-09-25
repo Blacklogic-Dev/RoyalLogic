@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Royal Logic Estate</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <style>
+    body {
+      background: linear-gradient(to right, #000000, #0000ff);
+    }
+    .electric-blue-border {
+      border: 5px solid #00f0ff;
+      box-shadow: 0 0 20px #00f0ff;
+      animation: glow 5s ease-in-out infinite;
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #00f0ff; }
+      50% { box-shadow: 0 0 30px #00f0ff; }
+      100% { box-shadow: 0 0 10px #00f0ff; }
+    }
+    .zoom-touch {
+      transition: transform 0.4s ease;
+    }
+    .zoom-touch:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body class="text-white min-h-screen flex flex-col items-center p-4">
+
+  <!-- Spacer -->
+  <div class="h-20"></div>
+
+  <!-- Logo -->
+  <div class="electric-blue-border rounded-2xl p-4 mt-6">
+    <img src="logo.png" alt="Royal Logic Estate Logo" class="w-64 h-auto" />
+  </div>
+
+  <!-- Smart Grid Cards -->
+  <div id="smart" class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-10 text-white">
+    <div class="bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg zoom-touch">
+      <img src="IOT.gif" alt="Luxury Living" class="rounded-lg mb-4">
+      <h3 class="text-xl font-bold mb-2">Luxury Living</h3>
+      <p>Our smart homes are crafted with elegance and high-tech features to redefine your lifestyle.</p>
+    </div>
+    <div class="bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg zoom-touch">
+      <img src="ios_9.gif" alt="Voice Control" class="rounded-lg mb-4">
+      <h3 class="text-xl font-bold mb-2">Voice Control</h3>
+      <p>Seamless control over your home with AI voice assistant tech made for royalty.</p>
+    </div>
+    <div class="bg-gradient-to-br from-blue-900 to-black p-4 rounded-xl shadow-lg zoom-touch">
+      <img src="Image.jpg" alt="Smart Security" class="rounded-lg mb-4">
+      <h3 class="text-xl font-bold mb-2">Smart Security</h3>
+      <p>24/7 AI monitoring and surveillance for safety in every corner of your kingdom.</p>
+    </div>
+  </div>
+
+  <!-- Properties Trading Section -->
+  <section id="properties" class="w-full mt-16">
+    <h2 class="text-3xl font-bold mb-8 text-center text-blue-300">Buy & Sell RoyalLogic Properties</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <!-- Card 1 -->
+      <div class="bg-gradient-to-br from-black to-blue-900 p-6 rounded-xl shadow-lg flex flex-col items-center zoom-touch">
+        <i class="fas fa-home text-5xl mb-4 text-blue-400"></i>
+        <h3 class="text-xl font-bold mb-2">Modern Smart Homes</h3>
+        <p>Sell or buy futuristic properties equipped with AI features and luxury interiors.</p>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="bg-gradient-to-br from-black to-blue-900 p-6 rounded-xl shadow-lg flex flex-col items-center zoom-touch">
+        <i class="fas fa-calculator text-5xl mb-4 text-blue-400"></i>
+        <h3 class="text-xl font-bold mb-2">AI Budget Calculator</h3>
+        <p>Estimate your purchase, calculate earnings, and plan your property investments with AI guidance.</p>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="bg-gradient-to-br from-black to-blue-900 p-6 rounded-xl shadow-lg flex flex-col items-center zoom-touch">
+        <i class="fas fa-tags text-5xl mb-4 text-blue-400"></i>
+        <h3 class="text-xl font-bold mb-2">Property Listings & Pricing</h3>
+        <p>Browse available properties, see prices, and instantly request to buy with our smart system.</p>
+      </div>
+    </div>
+
+    <!-- Buy Button -->
+    <div class="flex justify-center mt-8">
+      <a href="description.html" class="px-8 py-3 bg-blue-500 hover:bg-blue-600 rounded-lg font-bold shadow-lg transition duration-300">
+        Explore Properties
+      </a>
+    </div>
+  </section>
+
+</body>
+</html>
+
+
